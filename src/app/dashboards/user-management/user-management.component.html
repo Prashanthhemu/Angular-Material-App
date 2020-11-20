@@ -1,0 +1,9 @@
+<body>
+    <div class="container">
+        <data-table [dataTableData]="dataTableListData" [dataTableColumnData]="cloumnData"
+            [dataTableFieldNames]="columnField" [itemCount]="itemCount" (pageValueChange)="passPageFilter($event)"
+            (onDeleteButtonClick)="onDelete($event)" (onCreateButtonClick)="onCreate($event)"
+            (onEditButtonClick)="onEdit($event)">
+        </data-table>
+    </div>
+</body>

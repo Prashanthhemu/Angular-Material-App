@@ -1,0 +1,47 @@
+table {
+    width: 100%;
+  }
+
+.buttonStyles{
+margin-top:10px;
+height: 50px; 
+width: 150px;
+font-size: 110%;
+background-color: royalblue;
+color: whitesmoke;
+font-weight: bold;
+  }
+
+.mat-header-cell, .mat-sort-header {
+  font-weight: bold;
+  color: black;
+  font-size: medium;
+  }
+
+  .iconStyles{
+    color: gray;
+    margin-left: 25%;
+  }
+
+  .loading-style{
+    display: flex; 
+    justify-content: center; 
+    align-items: center
+  }
+
+  #nodata-style{
+    text-align: center;
+    margin: 20px;
+  }
+
+  .search-form-field{
+    width: 100%;
+    margin: 10px;
+    font-size: 12px; 
+  }
+
+  th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+    padding: 8px;
+    max-width: 170px;
+    word-break: break-word;
+  }

@@ -1,0 +1,39 @@
+<form [formGroup]="dataTableFormData" (change)="saveUserFormData()">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <button class="buttonStyles mb-4" mat-raised-button matTooltip="Add new record"
+                    matTooltipPosition="after" (click)="addRow()">
+                    <mat-icon>add</mat-icon>Add Entity
+                </button>
+            </div>
+        </div>
+    </div>
+    <table class="div-border-styles" id="editableDataTable">
+        <thead>
+            <tr>
+                <th *ngFor="let columnData of dataTableColumnsData" style="padding-left: 24px;">
+                    {{columnData.title}}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container formArrayName="tableRows" *ngFor="let group of getFormControls.controls ; let i=index">
+                <tr [formGroupName]="i">
+                    <td *ngFor="let columnData of dataTableColumnsData">
+                        <mat-form-field *ngIf="columnData">
+                            <input matInput type="text" formControlName="{{columnData.fieldName}}"
+                                [(ngModel)]="group.get(columnData.fieldName).value" [matTooltip]="group.get(columnData.fieldName).value" matTooltipPosition="above">
+                            <mat-error *ngIf="group.controls[columnData.fieldName].errors?.required">
+                                This field is mandatory.
+                            </mat-error>
+                            <mat-error *ngIf="group.controls[columnData.fieldName].errors?.pattern">
+                                {{columnData.errorMessage}}
+                            </mat-error>
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</form>

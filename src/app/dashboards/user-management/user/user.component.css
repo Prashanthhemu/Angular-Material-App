@@ -1,0 +1,22 @@
+.button-row button{
+    margin: 5px;
+}
+
+.mat-form-field {
+    font-size: 12px; 
+    width: 100%;
+}
+
+mat-card-footer{
+   margin-left: 28%;
+   padding-bottom: 10px;
+  }
+
+  .mat-icon {
+    color: grey;
+    width: 24px;
+  }
+
+
+
+  

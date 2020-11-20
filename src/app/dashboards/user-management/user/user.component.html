@@ -1,0 +1,67 @@
+<div class="col-md-8 offset-md-2">
+    <form [formGroup]="createUserForm" class="normal-form" (submit)="OnSubmit()">
+        <mat-card class="matCardStyles">
+            <mat-card-header>
+                <mat-card-title>
+                    {{formTitle}}
+                </mat-card-title>
+            </mat-card-header>
+            <label id="errorMessage" class="errorMessage">{{errorMessage}}</label>
+            <mat-card-actions>
+                <input type="hidden" formControlName="id">
+                <mat-form-field appearance="outline">
+                    <mat-label>Username*</mat-label>
+                    <input formControlName="username" matInput>
+                    <mat-error *ngIf="createUserForm.controls['username'].errors?.required">This field is
+                        mandatory.
+                    </mat-error>
+                    <mat-error *ngIf="createUserForm.controls['username'].errors?.maxlength">Maximun 20
+                        characters
+                        allowed.
+                    </mat-error>
+                    <mat-icon matSuffix>person</mat-icon>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Email*</mat-label>
+                    <input formControlName="email" matInput>
+                    <mat-error *ngIf="createUserForm.controls['email'].errors?.required">This field is
+                            mandatory.
+                    </mat-error>
+                    <mat-error *ngIf="createUserForm.controls['email'].errors?.email">Invalid email address.</mat-error>
+                    <mat-icon matSuffix>email</mat-icon>
+                </mat-form-field>
+                <mat-form-field *ngIf="showPasswordInputField" appearance="outline">
+                    <mat-label>Password*</mat-label>
+                    <input type="password" formControlName="password" matInput>
+                    <mat-error *ngIf="createUserForm.controls['password'].errors?.required">This field is
+                        mandatory.
+                    </mat-error>
+                    <mat-error *ngIf="createUserForm.controls['password'].errors?.minlength">Minimum 8
+                        characters
+                        required.
+                    </mat-error>
+                    <mat-error *ngIf="createUserForm.controls['password'].errors?.maxlength">Maximun 20
+                        characters
+                        allowed.
+                    </mat-error>
+                    <mat-icon matSuffix>lock</mat-icon>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>First Name</mat-label>
+                    <input formControlName="firstName" matInput>
+                    <mat-icon matSuffix>person</mat-icon>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Last Name</mat-label>
+                    <input formControlName="lastName" matInput>
+                    <mat-icon matSuffix>person</mat-icon>
+                </mat-form-field>
+            </mat-card-actions>
+            <mat-card-footer>
+                <button mat-raised-button class="submit-button-style" type="submit"
+                    [disabled]="createUserForm.invalid">Submit</button>
+                <button style="margin:5px" mat-raised-button color="warn" (click)="onClose()">Close</button>
+            </mat-card-footer>
+        </mat-card>
+    </form>
+</div>

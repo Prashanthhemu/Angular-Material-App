@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <button *ngIf="displayCreateButton" class="buttonStyles" mat-raised-button matTooltip="Create new record"
+        matTooltipPosition='after' (click)="onCreate()">
+        <mat-icon>add</mat-icon>Create
+      </button>
+    </div>
+    <div class="col-md-8">
+      <mat-form-field class="search-form-field" appearance="outline">
+        <mat-label>Search</mat-label>
+        <input matInput [(ngModel)]="searchKey" autocomplete="off" (keyup)="applySearchFilter()">
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container *ngFor="let columnData of dataTableColumnData" matColumnDef={{columnData.fieldName}}>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{columnData.title}} </th>
+      <td mat-cell *matCellDef="let element" [matTooltip]="element[columnData.fieldName]" matTooltipPosition="above"> {{element[columnData.fieldName]}} </td>
+    </ng-container>
+    <ng-container matColumnDef="editAndDeleteActions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button class="iconStyles">
+          <mat-icon (click)="onEdit(element)">launch</mat-icon>
+        </button>
+        <button mat-icon-button color="warn">
+          <mat-icon (click)="onDelete(element.id)">delete_outline</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="pdfAndEditActions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button class="iconStyles">
+          <mat-icon (click)="onPdfEdit(element)">launch</mat-icon>
+        </button>
+        <button mat-icon-button color="warn">
+          <mat-icon (click)="onPDFClick(element.blobUri)">picture_as_pdf</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="dataTableFieldNames"></tr>
+    <tr mat-row *matRowDef="let row; columns: dataTableFieldNames;"></tr>
+  </table>
+  <div *ngIf="showNoDataMessage" id="nodata-style">
+    <p>No Records Found!</p>
+  </div>
+  <mat-paginator [length]=[itemCount] [pageSize]="10" [pageSizeOptions]="[10, 20]" (page)="onPageChange($event)">
+  </mat-paginator>
+</div>

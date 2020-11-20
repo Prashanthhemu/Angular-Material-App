@@ -1,0 +1,75 @@
+<div class='dialog-scroll-styles'>
+    <button mat-mini-fab color="warn" id="close-icon-style">
+        <mat-icon (click)="onClose()">close</mat-icon>
+    </button>
+    <mat-card class="matCardStyles">
+        <mat-card-header>
+            <mat-card-title>
+                Update Ulosottovirasta Details
+            </mat-card-title>
+        </mat-card-header>
+        <label *ngIf="isException" id="errorMessage" class="errorMessage">{{errorMessage}}</label>
+        <form *ngIf="formExits" [formGroup]="ulosottovirastaFormData" class="normal-form" (submit)="OnSubmit()">
+            <mat-card-actions>
+                <input type="hidden" formControlName="id">
+                <mat-form-field appearance="outline">
+                    <mat-label>Entity Name*</mat-label>
+                    <input formControlName="entityname" matInput>
+                    <mat-error *ngIf="ulosottovirastaFormData.controls['entityname'].errors?.required">This field is
+                        mandatory.
+                    </mat-error>
+                </mat-form-field>
+                <!-- <mat-form-field appearance="outline">
+                    <mat-label>Certificate*</mat-label>
+                    <input formControlName="certificate" matInput>
+                    <mat-error *ngIf="ulosottovirastaFormData.controls['certificate'].errors?.required">This field
+                        is
+                        mandatory.
+                    </mat-error>
+                    <mat-error *ngIf="ulosottovirastaFormData.controls['certificate'].errors?.pattern">Shoud be
+                        in yyyy-MM-dd hh:mm:ss format.
+                    </mat-error>
+                </mat-form-field> -->
+                <mat-form-field appearance="outline">
+                    <mat-label>Certificate*</mat-label>
+                    <input matInput [matDatepicker]="certificate" formControlName="certificate" disabled>
+                    <mat-datepicker-toggle matSuffix [for]="certificate"></mat-datepicker-toggle>
+                    <mat-datepicker #certificate disabled="false"></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Customer ID*</mat-label>
+                    <input formControlName="customerId" matInput>
+                    <mat-error *ngIf="ulosottovirastaFormData.controls['customerId'].errors?.required">This field is
+                        mandatory.
+                    </mat-error>
+                    <mat-error *ngIf="ulosottovirastaFormData.controls['customerId'].errors?.pattern">Only positive
+                        integers are allowed.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Loan Group Name*</mat-label>
+                    <input formControlName="loanGroupName" matInput>
+                    <mat-error *ngIf="ulosottovirastaFormData.controls['loanGroupName'].errors?.required">This field
+                        is
+                        mandatory.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Customer POC*</mat-label>
+                    <input formControlName="customerPoc" matInput>
+                    <mat-error *ngIf="ulosottovirastaFormData.controls['customerPoc'].errors?.required">This field
+                        is
+                        mandatory.
+                    </mat-error>
+                </mat-form-field>
+            </mat-card-actions>
+            <editable-data-table [dataTableColumnsData]="cloumnData" [dataTableData]="dataTableListData"
+                [dataTableFormData]="ulosottovirastaDetailsFormData" [addEntityEmptyFormData]="addEntityFormData">
+            </editable-data-table>
+            <mat-card-footer>
+                <button mat-raised-button class="submit-button-style" type="submit"
+                    [disabled]="ulosottovirastaFormData.invalid">Submit</button>
+            </mat-card-footer>
+        </form>
+    </mat-card>
+</div>

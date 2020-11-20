@@ -1,0 +1,10 @@
+<div class='dialog-scroll-styles'>
+    <button mat-mini-fab color="warn" id="close-icon-style">
+        <mat-icon (click)="onClose()">close</mat-icon>
+    </button>
+    <pdf-viewer [src]="PDFSourceUri" [render-text]="true" class="pdf-styles" (page-rendered)="pageRendered($event)">
+    </pdf-viewer>
+    <div *ngIf="loading">
+        <mat-spinner></mat-spinner>
+    </div>
+</div>

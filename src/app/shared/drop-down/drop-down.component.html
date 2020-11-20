@@ -1,0 +1,9 @@
+<mat-form-field appearance="outline" id="drop-down-styles">
+    <mat-label>Data Feed Type</mat-label>
+    <mat-select [(ngModel)]="defaultValue" name="dropDown">
+        <mat-option *ngFor="let data of dropDownList" [value]="data.dataFeedTypeId"
+            (click)="filterChange(data.dataFeedTypeId)">
+            {{data.dataFeedTypeName}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>

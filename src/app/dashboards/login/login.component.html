@@ -1,0 +1,52 @@
+<!-- Default form login -->
+<div class="container h-100">
+  <div class="row mx-auto h-100 justify-content-center align-items-center">
+    <div class="col-md-3 authfy-panel-left mh-365">
+      <div class="brand-col">
+        <div class="headline">
+          <!-- brand-logo start -->
+          <div class="brand-logo">
+            <img src="../../../assets/images/solidate-logo-header.png" width="150" alt="brand-logo">
+          </div>
+          <p>Solidate helps over-indebted people towards a balanced economic situation. Thus, we work for the benefit of both society and the individual. We believe that ethical, sustainable and humane business is also the most profitable for all parties.</p>
+          <img src="../../../assets/images/user-icon.ico" class="img-fluid"/>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mh-365 p-0 bg-solidate">
+      <!-- Form -->
+      <form class="form-example border-0" [formGroup]="userForm" (submit)="buttonClick($event)">
+        <div class="text-center  border-0">
+          <div class="card-body text-left">
+            <h3 class="text-center text-white">Login to your account</h3>
+            <label id="errorMessage" class="errorMessage">{{errorMessage}}</label>
+            <div class="form-group">
+              <label for="username" class="text-white">Username</label>
+              <input type="text" id="username" name="username" formControlName="username" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+              <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                <div *ngIf="f.username.errors.required">*Username is required</div>
+                <div *ngIf="f.username.errors.maxlength">Username must be max 20 characters</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="password" class="text-white">Password</label>
+              <input type="password" id="password" name="password" formControlName="password" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">*Password is required</div>
+                <div *ngIf="f.password.errors.maxlength">Password must be max 20 characters</div>
+                <div *ngIf="f.password.errors.minlength">Minimum 8 characters required.</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <!-- Form end -->
+    </div>
+  </div>
+</div>

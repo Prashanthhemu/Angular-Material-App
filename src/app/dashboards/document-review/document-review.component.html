@@ -1,0 +1,13 @@
+<div class="container">
+    <div>
+        <drop-down [dropDownList]="dataFeedTypeList" [defaultValue]="defaultDropDownValue"
+            (dropDownValueChange)="filterDropDownValueChange($event)"></drop-down>
+    </div>
+    <div>
+        <data-table [dataTableData]="dataTableListData" [dataTableColumnData]="cloumnData"
+            [dataTableFieldNames]="columnField" [itemCount]="itemCount" [displayCreateButton]="displayCreateButton"
+            (pageValueChange)="passPageFilter($event)" (onPDFButtonClick)="onPDFClick($event)" (onEditButtonClick)="
+            onEdit($event)">
+        </data-table>
+    </div>
+</div>
